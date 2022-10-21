@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br"  ng-app="ListaTelefonica">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script src="angular.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script>
+    angular.module("ListaTelefonica", []); //ingeção de novos modules
+    angular.module("ListaTelefonica").controller("ListaTelefonicaCtrl", function($scope){
+        $scope.app = "Lista telefonica";
+        $scope.contatos = [
+            {nome: "Pedro", telefone: "927152537", Tipo: "Amigo"},
+            {nome: "Clesio", telefone: "927152537", Tipo: "Irmão"},
+            {nome: "Silvio", telefone: "927152537", Tipo: "Amigo"}
+        ];
+
+        $scope.adionarcontato = function (){
+            $scope.contatos.push({nome: $scope.nome,telefone: $scope.telefone,Tipo: $scope.Tipo});
+            delete $scope.contato;
+        };
+    });
+
+  
+</script>
+</head>
+
+
+<style>
+
+    *{
+        color: white;
+        font-weight: 700;
+    
+    }
+    .jumbotron{
+        width: 400px;
+        text-align: center;
+        margin-top: 20px;
+        margin-left: auto; 
+        margin-right: auto;
+        background-image: linear-gradient(to left, rgb(55, 0, 255), rgb(25, 73, 155));
+        min-height: 3em;  
+        border: 1px solid rgba(0, 0, 0, 0.897);
+        border-radius: 10px;
+    }
+
+    .table{
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .form-control{
+        padding: 10px;
+        margin: auto;
+    }
+</style>
+<body ng-controller="ListaTelefonicaCtrl">
+
+    <div class="jumbotron p-2"> <!--views-->
+     
+        <h4 ng-bind="app"></h4> <!--expresion--> 
+        <table class="table table-striped">
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Tipo</th>
+            </tr>
+            <tr ng-repeat="contato in contatos">
+                <td>{{contato.nome}}</td>
+                <td>{{contato.telefone}}</td>
+                <td>{{contato.Tipo}}</td>
+            </tr>
+        </table>
+       <hr>
+       <p><input  class="form-control " type="text" ng-model="nome" placeholder="Informe o nome" maxlength="80"></p> 
+        <p><input class="form-control  " type="text" ng-model="telefone" placeholder="Informe o número" maxlength="9"></p> 
+        <p><input class="form-control  " type="text" ng-model="Tipo" placeholder="Tipo" maxlength="20"></p>
+        <button ng-click="adionarcontato()" ng-disabled="!nome  || !telefone || !Tipo"  class="btn bg-danger text-light">Adicionar contato</button>
+    </div>
+
+
+
+
+    <!--Directivas são extensões -->
+
+    <!--ngAPP 
+    definindo as fronteiras da b aplicação
+    -->
+    
+</body>
+</html>
